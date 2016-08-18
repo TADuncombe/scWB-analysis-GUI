@@ -1,0 +1,92 @@
+Instructions for the Array Orientation Setup GUI
+Todd Duncombe
+Updated: 12/4/15
+
+RECOMENDATIONS:
+-We recommend analyzing a single slide at a time using this analysis code.
+In which case, the best organization practice is creating a separate folder
+for each unique slide to be analyzed.
+    i.e. a slide folder may contain multiple proteins or antibodies on the
+    same slide, either from multichannel fluorescense scan,
+    or stripping and reprobing.
+    
+    This is not required. If analyzing multiple slides in parallel turn 
+    'Array Match' off.
+
+BEFORE USE:
+-Organize the microarray images of interest into a new directory. (tif required)
+    Often, different images will represent different proteins or antibodies on
+    this same slide.
+
+-Visually inspect the images (e.g. in imageJ) that the array section of 
+    interest is visable and shared among all slides. Do not crop the array
+    seciton 'tight', it should have >1 mm of space extra on all sides.
+
+(1) 'SELECT DIRECTORY' (top left)
+Select the directory containing the .tif files of interest. The path for
+the selected directory will be displayed near the headure of the GUI. All
+.tif files from the directory will be loaded in the file list box.
+
+(2) Move files from 'FILE LIST' (left) to the 'FILES TO BE PROCESSED LIST' (right)
+-Click on the files of interest to move them to files to be processed.
+-Click 'ADD ALL' to quickly move all files.
+-To remove files from 'files to be processed', simply click on them again 
+in the files to be processed box.
+
+(3) 'ADD FILES TO TABLE' (center of gui)
+Once all files to be processed are in the correct box, click 'ADD FILES TO
+TABLE'. This will update the file assignment table with these files. The
+image sizes will be automatically loaded into the 'image size' column. If
+buttons 'Array Match ON' or 'Auto Image Match ON' are on, they will be
+automatically performed (described below).
+
+(4) Type the file nicknames into the 'NAME' column on the table
+Fill in file nicknames for all images (e.g. GFP, aGFP, ab-GFP, anti-GFP). 
+There must be no duplicates. This facilitates easy/intuitive referencing of the
+images & corresponding data later on. It's best to choose a notation and 
+stay consitent between slides. (example below)
+
+(5) set 'ARRAY-MATCH'
+Array match sets the ROI constant for all images. It is recommended when you
+want to compare protein expression from different markers in the same cell.
+-If all images are of the same slide, set ARRAY-MATCH to '1'.
+-If there are multiple slides being analyzed, matching slides slides should
+have a matching numeric value. Non matching images should have a 0.
+(example below)
+
+(6) set 'IMAGE-MATCH'
+Image Match identifies images that match in image dimensions and naming, to
+reduce the number of alignment steps required. Each matching image set will
+share a positive integer. Non matching images should have a 0.
+(example below)
+
+File Assignment Table Example:
+FileName:                           Name:     Array Match:    Image Match:
+date_slide1_scan1_gfp_bTub_488       gfp            1               1
+date_slide1_scan1_gfp_bTub_555       bTUB           1               1
+date_slide1_scan2_HER2_ERK_488       HER2           1               2
+date_slide1_scan2_HER2_ERK_555       ERK            1               2
+date_slide1_scan3_mTOR_488           mTOR           1               0
+date_slide1_scan4_aACT_488           aACT           1               0
+
+--- if multiple slides are being processed simultanously (not recommened)--
+date_slide2_scan1_gfp_bTub_488       slide2_gfp     2               3
+date_slide2_scan1_gfp_bTub_555       slide2_bTUB    2               3
+
+(7) Set Image/Array Settings (REQUIRED)
+'SCALE' - resolution of the the image, in microns per pixel
+'WELL TO WELL LATERAL DISTANCE' - transverse pixel spacing between wells
+'LANE LENGTH' - axial pixel spacing between wells
+
+Note: 'LAST ACTION' (bottom of gui) is updated for (almost) all steps, this is the 
+place to check if the operation performance of the GUI is perplexing.
+
+OPTIONAL - ADVANCED USERS ONLY
+(*) 'REFERENCE ARRAY'
+Imports an array from a previously processed file for Array # '1' only.
+Useful if analyzing a slide that was previously analyzed (e.g. for other proteins.)
+
+(*) 'ADVANCED SETTINGS'
+'MULTIDIRECTIONAL ROI GENERATION' - Creates a double ROI for each image (up
+and down). Useful for multiple single cell fractionations.
+'MINIMUM Y CROP OFFSET' - Minimum y crop offset around the array.
