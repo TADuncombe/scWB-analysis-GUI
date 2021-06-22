@@ -10,9 +10,7 @@ In which case, the best organization practice is creating a separate folder
 for each unique slide to be analyzed.
     i.e. a slide folder may contain multiple proteins or antibodies on the
     same slide, either from multichannel fluorescense scan,
-    or stripping and reprobing.
-    
-    This is not required. If analyzing multiple slides in parallel turn 
+    or stripping and reprobing. This is not required. If analyzing multiple slides in parallel turn 
     'Array Match' off.
 
 BEFORE USE:
